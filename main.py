@@ -5,6 +5,8 @@ def new_game():
     correct_guesses = 0
     questions_num = 1
 
+
+
     for key in questions:
         print("-----------------------")
         print(key)
@@ -13,8 +15,15 @@ def new_game():
         guess = input("Enter (A,B,C,D): ")
         guess = guess.upper()
         guesses.append(guess)
+
         correct_guesses += check_answer(questions.get(key),guess)
+        if questions_num == 10 and check_answer(questions.get(key),guess) ==1:
+            correct_guesses +=1
+        if questions_num %3 == 0:
+            print("your mid score is : ", round(correct_guesses*(100/9),2))
         questions_num += 1
+
+
 
 
     display_score(correct_guesses,guesses)
@@ -25,11 +34,13 @@ def check_answer(answer, guss):
         return 1
     else:
         print("WORNG")
-        return  0
+        return 0
+
 
 
 def check_game():
     pass
+print("wellcom to miki & jonathan trivia !")
 def display_score(correct_guesses,guesses):
     print("-----------------------")
     print("RESULTS")
@@ -41,7 +52,7 @@ def display_score(correct_guesses,guesses):
         print()
 
     score = int((correct_guesses/len(questions))*100)
-    print("your score is "+str(score)+"%")
+    print("your score is "+str(score) +"  "+"POINTS")
 
 def play_agine():
     response = input("Do you want to play again ? (yes or no ?)")
@@ -51,6 +62,8 @@ def play_agine():
         return True
     else:
         return False
+
+
 
 questions = {" In what year was the first-ever Wimbledon Championship held?:" : "A",
 "Hg is the chemical symbol of which element?: " : "B",
@@ -74,6 +87,7 @@ options = [["A.1877","B.1876","C.1890","D.H2O"],["A.Tocsic","B.Mercury","C.H20",
 
 new_game()
 while play_agine():
+
      new_game()
 
 print("byeee Falisha!")
